@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenRun Id="impl_1" LaunchPart="xc7z020clg400-1" LaunchTime="1528279833">
+  <File Type="ROUTE-PWR-SUM" Name="axis_power_summary_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-RPX" Name="axis_methodology_drc_routed.rpx"/>
+  <File Type="ROUTE-PWR" Name="axis_power_routed.rpt"/>
+  <File Type="ROUTE-DRC-RPX" Name="axis_drc_routed.rpx"/>
+  <File Type="ROUTE-METHODOLOGY-DRC-PB" Name="axis_methodology_drc_routed.pb"/>
+  <File Type="ROUTE-DRC-PB" Name="axis_drc_routed.pb"/>
+  <File Type="ROUTE-METHODOLOGY-DRC" Name="axis_methodology_drc_routed.rpt"/>
+  <File Type="ROUTE-DRC" Name="axis_drc_routed.rpt"/>
+  <File Type="ROUTE-BLACKBOX-DCP" Name="axis_routed_bb.dcp"/>
+  <File Type="ROUTE-DCP" Name="axis_routed.dcp"/>
+  <File Type="ROUTE-ERROR-DCP" Name="axis_routed_error.dcp"/>
+  <File Type="PHYSOPT-DCP" Name="axis_physopt.dcp"/>
+  <File Type="POSTPLACE-PWROPT-DCP" Name="axis_postplace_pwropt.dcp"/>
+  <File Type="PLACE-CTRL" Name="axis_control_sets_placed.rpt"/>
+  <File Type="PLACE-UTIL-PB" Name="axis_utilization_placed.pb"/>
+  <File Type="PLACE-UTIL" Name="axis_utilization_placed.rpt"/>
+  <File Type="PLACE-DCP" Name="axis_placed.dcp"/>
+  <File Type="PA-TCL" Name="axis.tcl"/>
+  <File Type="PLACE-IO" Name="axis_io_placed.rpt"/>
+  <File Type="BG-BIT" Name="axis.bit"/>
+  <File Type="ROUTE-STATUS-PB" Name="axis_route_status.pb"/>
+  <File Type="RDI-RDI" Name="axis.vdi"/>
+  <File Type="BG-BIN" Name="axis.bin"/>
+  <File Type="ROUTE-TIMINGSUMMARY" Name="axis_timing_summary_routed.rpt"/>
+  <File Type="BITSTR-MSK" Name="axis.msk"/>
+  <File Type="ROUTE-TIMING-PB" Name="axis_timing_summary_routed.pb"/>
+  <File Type="BITSTR-RBT" Name="axis.rbt"/>
+  <File Type="ROUTE-TIMING-RPX" Name="axis_timing_summary_routed.rpx"/>
+  <File Type="BITSTR-NKY" Name="axis.nky"/>
+  <File Type="BITSTR-BMM" Name="axis_bd.bmm"/>
+  <File Type="ROUTE-CLK" Name="axis_clock_utilization_routed.rpt"/>
+  <File Type="BG-DRC" Name="axis.drc"/>
+  <File Type="BITSTR-MMI" Name="axis.mmi"/>
+  <File Type="OPT-DCP" Name="axis_opt.dcp"/>
+  <File Type="WBT-USG" Name="usage_statistics_webtalk.html"/>
+  <File Type="POSTROUTE-PHYSOPT-BLACKBOX-DCP" Name="axis_postroute_physopt_bb.dcp"/>
+  <File Type="BG-BGN" Name="axis.bgn"/>
+  <File Type="BITSTR-SYSDEF" Name="axis.sysdef"/>
+  <File Type="BITSTR-LTX" Name="axis.ltx"/>
+  <File Type="REPORTS-TCL" Name="axis_reports.tcl"/>
+  <File Type="PWROPT-DCP" Name="axis_pwropt.dcp"/>
+  <File Type="POSTROUTE-PHYSOPT-DCP" Name="axis_postroute_physopt.dcp"/>
+  <File Type="ROUTE-STATUS" Name="axis_route_status.rpt"/>
+  <File Type="ROUTE-PWR-RPX" Name="axis_power_routed.rpx"/>
+  <File Type="OPT-DRC" Name="axis_drc_opted.rpt"/>
+  <File Type="PLACE-PRE-SIMILARITY" Name="axis_incremental_reuse_pre_placed.rpt"/>
+  <File Type="OPT-HWDEF" Name="axis.hwdef"/>
+  <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
+    <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/new/master.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/slave.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../array2/array2.srcs/sources_1/new/ArgMaxCell.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../array2/array2.srcs/sources_1/new/Array.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../array2/array2.srcs/sources_1/new/MultCell.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../array2/array2.srcs/sources_1/new/bram.sv">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/axis.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PPRDIR/../array2/array2.srcs/sources_1/new/Top.sv">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <Config>
+      <Option Name="DesignMode" Val="RTL"/>
+      <Option Name="TopModule" Val="axis"/>
+      <Option Name="TopAutoSet" Val="TRUE"/>
+    </Config>
+  </FileSet>
+  <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
+    <Filter Type="Constrs"/>
+    <Config>
+      <Option Name="ConstrsType" Val="XDC"/>
+    </Config>
+  </FileSet>
+  <Strategy Version="1" Minor="2">
+    <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2017"/>
+    <Step Id="init_design"/>
+    <Step Id="opt_design"/>
+    <Step Id="power_opt_design"/>
+    <Step Id="place_design"/>
+    <Step Id="post_place_power_opt_design"/>
+    <Step Id="phys_opt_design"/>
+    <Step Id="route_design"/>
+    <Step Id="post_route_phys_opt_design"/>
+    <Step Id="write_bitstream"/>
+  </Strategy>
+</GenRun>

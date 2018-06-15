@@ -1,0 +1,198 @@
+// This program runs inference on the extracted quantized weights etc. of the mnist graph and validates them.
+
+#include <stdio.h>
+#include <math.h>
+#include <assert.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include "headerfile_quantized.h"
+
+// Documentation of the idx format can be found here.
+// http://www.fon.hum.uva.nl/praat/manual/IDX_file_format.html
+// It is a big-endian file!
+void readImageTestData (unsigned char testData[10000][784][1])
+{
+    // 00000803 00002710 0000001C 0000001C
+    // The first 16 bytes of the header are meta information: 
+    // 1-2: The magic number is four bytes long. The first 2 bytes are always 0.
+    // 3: Type of data. 0x08: unsigned byte
+    // 4: The fouth byte codes the number of dimensions of the vector/matrix
+    // 5-16: The sizes in each dimension are 4-byte integers (big endian, like in most non-Intel processors).
+    // --> We have a matrix 10000x28*28.
+
+    // We read this header and just compare it so we know we have the correct file.
+    
+    unsigned char header[16];
+    unsigned char referenceHeader[16] = {0x00, 0x00, 0x08, 0x03, 0x00, 0x00, 0x27, 0x10, 0x00, 0x00, 0x00, 0x1C, 0x00, 0x00, 0x00, 0x1C};
+    FILE *ptr;
+
+    ptr = fopen("images/t10k-images-idx3-ubyte","rb");  // r for read, b for binary
+
+    fread(header,sizeof(header),1,ptr);
+    int headerIsCorrect = memcmp(header, referenceHeader, 16);
+
+    for (int i = 0; i < 16; i++)
+    {
+        if (header[i] != referenceHeader[i]) 
+        {
+            printf("Invalid test data header detected.\n");
+            exit(0);
+        }
+    }
+    printf("Valid test data header detected.\n");
+
+    // Now we take the input data and build x with it.
+    // Input is 10000x28*28. We need 10000x784x1
+
+    // Make sure we are at the start of the image data.
+    fseek(ptr, 0x10, SEEK_SET);
+
+    for (int i = 0; i < 10000; i++)
+    {
+        unsigned char buffer[784];
+
+        // read 784 byte
+        fread(buffer,sizeof(buffer),1,ptr);
+
+        for (int j = 0; j < 784; j++)
+        {
+            testData[i][j][0] = buffer[j];
+        }
+        // skip to the next picture. 0x310 = 784
+        // fseek(ptr, 0x310, SEEK_CUR);
+    }
+}
+
+void readImageTestLabels (unsigned char testLabels[10000])
+{
+    // 00000803 00002710
+    // The first 16 bytes of the header are meta information: 
+    // 1-2: The magic number is four bytes long. The first 2 bytes are always 0.
+    // 3: Type of data. 0x08: unsigned byte
+    // 4: The fouth byte codes the number of dimensions of the vector/matrix
+    // 5-8: The sizes in each dimension are 4-byte integers (big endian, like in most non-Intel processors).
+    // --> We have a matrix 10000x1.
+
+    // We read this header and just compare it so we know we have the correct file.
+    
+    unsigned char header[8];
+    unsigned char referenceHeader[16] = {0x00, 0x00, 0x08, 0x01, 0x00, 0x00, 0x27, 0x10};
+    FILE *ptr;
+
+    ptr = fopen("images/t10k-labels-idx1-ubyte","rb");  // r for read, b for binary
+
+    fread(header,sizeof(header),1,ptr);
+    int headerIsCorrect = memcmp(header, referenceHeader, 8);
+
+    for (int i = 0; i < 8; i++)
+    {
+        if (header[i] != referenceHeader[i]) 
+        {
+            printf("Invalid test label header detected.\n");
+            exit(0);
+        }
+    }
+    printf("Valid test label header detected.\n");
+
+    // The labels are easy. We just have 10000x1 Byte. Just put it into an array.
+
+    // Make sure we are at the start of the label data.
+    fseek(ptr, 0x08, SEEK_SET);
+
+    for (int i = 0; i < 10000; i++)
+    {
+        unsigned char buffer;
+
+        // read 1 byte
+        fread(&buffer,sizeof(buffer),1,ptr);
+        testLabels[i] = buffer;
+    }
+}
+
+int main()
+{
+
+    // 1. Read input data.
+    unsigned char testData[10000][784][1];
+    readImageTestData(testData);
+    unsigned char testLabels[10000];
+    readImageTestLabels(testLabels);
+
+    int numberOfImages = 10000;
+    int numberOfCorrectGuesses = 0;
+
+    uint8_t Z_w = 121;
+    uint8_t Z_x = 0;
+
+    // Loop over all the testdata.
+    for(int m = 0 ; m < numberOfImages ; m++){
+
+    	// Stop the time used for one image.
+    	clock_t begin = clock();
+
+        // 1. Matrixmultiplication of the data and W.
+        int C[wRows][xCols];
+        for( int i = 0 ; i < wRows ; i++ ){
+            for( int j = 0 ; j < xCols ; j++ ){
+                C[i][j]=0;
+                for( int k = 0 ; k < wCols ; k++ ) {
+                    uint8_t dataInt = (uint8_t)testData[m][k][j];
+                    uint8_t wInt = (uint8_t)W[i][k];
+                    C[i][j] += (uint32_t)(wInt * dataInt);
+                }
+            }
+        }
+
+        // Look for the smallest bias.
+        float smallestBias = b[0][0];
+        for( int i = 0 ; i < wRows ; i++ )
+        {
+            if (b[i][0] <= smallestBias ) {
+                smallestBias = b[i][0];
+            }
+        }
+
+        // Add the bias to the matrix C=Wx.
+        for( int i = 0 ; i < wRows ; i++ )
+        {
+            // We nudge the bias torwards zero, so we do not have any negative biases.
+            // We could actually already do this in our python script.
+            int biasScaled = ((b[i][0] + fabs(smallestBias)) / 0.005402);
+            C[i][0] += biasScaled;
+        }
+
+        // 4. Get the maximum position.
+        int max = 0;
+        int digit = 0;
+        for( int i = 0 ; i < wRows ; i++ )
+        {
+            if ( C[i][0] >= max ) 
+            {
+                max = C[i][0];
+                digit = i;
+            }
+        }
+
+        clock_t end = clock();
+        double time_spent = (double)(end - begin) / CLOCKS_PER_SEC;
+
+        printf("Used %fs for the image.\n", time_spent);
+
+        // 5. Check if the answer was right.
+        unsigned int label = (int)testLabels[m];
+        if ( digit == label)
+        {
+            numberOfCorrectGuesses++;
+        }
+
+    }
+
+    // 6. Calculate the accuracy.
+    int accuracy = numberOfCorrectGuesses / (numberOfImages / 100);
+
+    printf("Number of correct guesses: %d\n", numberOfCorrectGuesses);
+    printf("Accuracy: %d\n", accuracy);
+
+    return 0;
+}

@@ -1,0 +1,12 @@
+0.6
+2017.4
+Dec 15 2017
+20:57:24
+/home/icedaq/code/project2/array2/array2.sim/sim_1/behav/xsim/glbl.v,1513215259,verilog,,,,glbl,,xil_defaultlib,,,,,,
+/home/icedaq/code/project2/array2/array2.srcs/sim_1/new/ArgMaxCell_tb.sv,1526719055,systemVerilog,,,,ArgMaxCell_tb,,xil_defaultlib,/mnt/data/Xilinx/Vivado/2017.4/data/xilinx_vip/include,,,,,
+/home/icedaq/code/project2/array2/array2.srcs/sim_1/new/Array_tb.sv,1526731477,systemVerilog,,,,Array_tb,,xil_defaultlib,/mnt/data/Xilinx/Vivado/2017.4/data/xilinx_vip/include,,,,,
+/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/ArgMaxCell.sv,1526731916,systemVerilog,,/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/Array.sv,,ArgMaxCell,,xil_defaultlib,/mnt/data/Xilinx/Vivado/2017.4/data/xilinx_vip/include,,,,,
+/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/Array.sv,1528495678,systemVerilog,,/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/MultCell.sv,,Array,,xil_defaultlib,/mnt/data/Xilinx/Vivado/2017.4/data/xilinx_vip/include,,,,,
+/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/MultCell.sv,1526730340,systemVerilog,,/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/bram.sv,,MultCell,,xil_defaultlib,/mnt/data/Xilinx/Vivado/2017.4/data/xilinx_vip/include,,,,,
+/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/MultCell_tb.sv,1526655131,systemVerilog,,,,MultCell_tb,,xil_defaultlib,/mnt/data/Xilinx/Vivado/2017.4/data/xilinx_vip/include,,,,,
+/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/bram.sv,1526652796,systemVerilog,,/home/icedaq/code/project2/array2/array2.srcs/sim_1/new/Array_tb.sv,,BRam,,xil_defaultlib,/mnt/data/Xilinx/Vivado/2017.4/data/xilinx_vip/include,,,,,

@@ -1,0 +1,7 @@
+Vivado Simulator 2017.4
+Copyright 1986-1999, 2001-2016 Xilinx, Inc. All Rights Reserved.
+Running: /mnt/data/Xilinx/Vivado/2017.4/bin/unwrapped/lnx64.o/xelab -wto 73c2f0be96ac4794aba1bba2ba32a3ab --incr --debug typical --relax --mt 8 -L xil_defaultlib -L unisims_ver -L unimacro_ver -L secureip --snapshot Array_tb_behav xil_defaultlib.Array_tb xil_defaultlib.glbl -log elaborate.log 
+Using 8 slave threads.
+Starting static elaboration
+Completed static elaboration
+ERROR: [XSIM 43-3980] File "/home/icedaq/code/project2/array2/array2.srcs/sources_1/new/Array.sv" Line 50 : The "System Verilog Array of String type Parameters" is not supported yet for simulation.

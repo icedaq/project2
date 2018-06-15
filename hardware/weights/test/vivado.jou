@@ -1,0 +1,17 @@
+#-----------------------------------------------------------
+# Vivado v2017.4 (64-bit)
+# SW Build 2086221 on Fri Dec 15 20:54:30 MST 2017
+# IP Build 2085800 on Fri Dec 15 22:25:07 MST 2017
+# Start of session at: Sat Jun  9 00:05:01 2018
+# Process ID: 12868
+# Current directory: /home/icedaq/code/project2/weights/test
+# Command line: vivado
+# Log file: /home/icedaq/code/project2/weights/test/vivado.log
+# Journal file: /home/icedaq/code/project2/weights/test/vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project /home/icedaq/code/project2/array2/array2.xpr
+update_compile_order -fileset sources_1
+launch_simulation
+launch_simulation
+launch_simulation
