@@ -1,0 +1,12 @@
+
+mnist/tensorflow/
+mnist/trash/
+mnist/.tox
+mnist/.vscode/
+mnist/matmul
+
+
+# macOS stuff
+.DS_Store
+
+# 
